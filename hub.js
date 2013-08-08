@@ -1,4 +1,10 @@
-var io = require('socket.io').listen(80);
+var io = require('socket.io').listen(8082);
+
+// heroku, y u no support web socket.
+io.configure(function () { 
+    io.set("transports", ["xhr-polling"]); 
+    io.set("polling duration", 10); 
+});
 
 var clients = {};
 
